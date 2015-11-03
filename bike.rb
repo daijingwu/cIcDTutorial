@@ -9,7 +9,7 @@ end
 class KHS < Bike
 	attr_accessor :type, :year, :store
 	def initialize
-		put "New KHS Bike!"
+		puts "New KHS Bike!"
 	end
 end
 
