@@ -217,9 +217,33 @@ https://github.com/daijingwu/cIcDTutorial/settings/hooks/new?service=jenkins
 => jenkins git plugin
 => http://172.20.10.11/
 
-jenkins:
+jenkins: (myjenkins.djhome)
 http://myjenkins.djhome:8080/job/cIcDdEmo/configure
 check "poll SCM" => 0 */3 * * *
+
+8080 => 80
+$ sudo apt-get install apache2
+$ sudo a2enmod proxy_http
+$ sudo vi /etc/apache2/sites-available/jenkins.conf
+<VirtualHost *:80>
+        ServerName HOSTNAME
+        ProxyRequests off
+        <Proxy *>
+                Order deny,allow
+                Allow from all
+        </Proxy>
+        ProxyPreserveHost on
+        ProxyPass / http://localhost:8080/
+</VirtualHost>
+daijingwu@jenkins:~$ sudo a2ensite jenkins
+Enabling site jenkins.
+To activate the new configuration, you need to run:
+  service apache2 reload
+daijingwu@jenkins:~$ sudo mv /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.old 
+daijingwu@jenkins:~$ sudo mv /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf.old 
+daijingwu@jenkins:~$ sudo service apache2 reload
+=> http://172.20.10.11
+
 
 =========   ========= 
 =========   ========= 
