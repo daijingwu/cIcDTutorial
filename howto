@@ -1,0 +1,248 @@
+========= git ========= 
+https://github.com/daijingwu/cIcDTutorial
+=> open a new git repo
+$ git clone https://github.com/daijingwu/cIcDTutorial.git
+$ cd cIcDTutorial
+$ git add bike.rb
+$ git commit -m "bike.rb init"
+$ git push
+
+$ git status
+
+$ git pull
+
+$ vi kid/test2
+
+$ git add -A
+$ git commit -m "xxx"
+$ git push
+
+$ git rm kid/test
+$ git checkout -- kid/test
+$ git rm kid/test
+
+$ git commit -m "xxx"
+$ git push
+
+$ git checkout
+
+$ git clone https://github.com/daijingwu/cIcDTutorial.git
+Cloning into 'cIcDTutorial'...
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+Checking connectivity... done.
+bash-3.2$ ls -l
+total 0
+drwxr-xr-x   5 daijingwu  staff  170 Nov  3 13:41 cIcDTutorial
+
+$ git add bike.rb 
+bash-3.2$ git commit -m "bike.rb init"
+[master b876df0] bike.rb init
+ 1 file changed, 30 insertions(+)
+ create mode 100644 bike.rb
+bash-3.2$ git push
+warning: push.default is unset; its implicit value has changed in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the traditional behavior, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+When push.default is set to 'matching', git will push local branches
+to the remote branches that already exist with the same name.
+
+Since Git 2.0, Git defaults to the more conservative 'simple'
+behavior, which only pushes the current branch to the corresponding
+remote branch that 'git pull' uses to update the current branch.
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 579 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/daijingwu/cIcDTutorial.git
+   9cfc877..b876df0  master -> master
+
+bash-3.2$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working directory clean
+bash-3.2$ git pull
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+From https://github.com/daijingwu/cIcDTutorial
+   5c8dc07..6a5beab  master     -> origin/master
+Updating 5c8dc07..6a5beab
+Fast-forward
+ kid/test2 | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 kid/test2
+
+bash-3.2$ git rm kid/test
+rm 'kid/test'
+bash-3.2$ git rm kid/test2
+rm 'kid/test2'
+bash-3.2$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        deleted:    kid/test
+        deleted:    kid/test2
+
+bash-3.2$ git checkout
+D       kid/test
+D       kid/test2
+Your branch is up-to-date with 'origin/master'.
+
+
+bash-3.2$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    kid/test
+        deleted:    kid/test2
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git checkout -- kid/test
+bash-3.2$ git checkout -- kid/test2
+bash-3.2$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working directory clean
+
+bash-3.2$ ls
+README.md       bike.rb         kid <<== back
+
+bash-3.2$ mkdir kid2
+bash-3.2$ touch kid2/test
+bash-3.2$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        kid2/
+
+nothing added to commit but untracked files present (use "git add" to track)
+bash-3.2$ git add -A
+bash-3.2$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   kid2/test
+
+
+bash-3.2$ git rm kid/*
+bash-3.2$ git rm kid2/*
+rm 'kid2/test'
+
+bash-3.2$ git commit -m "rm kid & kid2"
+[master 5407e59] rm kid & kid2
+ 3 files changed, 1 deletion(-)
+ delete mode 100644 kid/test
+ delete mode 100644 kid/test2
+ delete mode 100644 kid2/test
+bash-3.2$ git push
+warning: push.default is unset; its implicit value has changed in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the traditional behavior, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+When push.default is set to 'matching', git will push local branches
+to the remote branches that already exist with the same name.
+
+Since Git 2.0, Git defaults to the more conservative 'simple'
+behavior, which only pushes the current branch to the corresponding
+remote branch that 'git pull' uses to update the current branch.
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Counting objects: 2, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 220 bytes | 0 bytes/s, done.
+Total 2 (delta 1), reused 0 (delta 0)
+To https://github.com/daijingwu/cIcDTutorial.git
+   6016b0c..5407e59  master -> master
+
+
+========= jenkins =========
+http://myjenkins.djhome:8080/job/cIcDdEmo/buildTimeTrend
+
+jenkins@jenkins:~/.ssh$ ssh-keygen -t rsa -b 4096 -C "jenkins@myjenkins.djhome"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/var/lib/jenkins/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /var/lib/jenkins/.ssh/id_rsa.
+Your public key has been saved in /var/lib/jenkins/.ssh/id_rsa.pub.
+The key fingerprint is:
+12:ab:5f:e9:ea:b7:f7:91:8b:0e:bc:09:f7:2f:0a:91 jenkins@myjenkins.djhome
+The key's randomart image is:
+...
+jenkins@jenkins:~/.ssh$ ls
+id_rsa  id_rsa.pub
+jenkins@jenkins:~/.ssh$ cat id_rsa.pub  => add this public key to the github @ https://github.com/settings/ssh 
+
+
+=========   ========= 
+=========   ========= 
+=========   ========= 
+=========   ========= 
+========= docker ========= 
+$ docker images
+$ docker pull jenkinsci/jenkins
+$ docker run -p 8080:8080 --name=jenkins-master -d jenkinsci/jenkins
+$ docker run  -it centos /bin/bash
+$ docker stop jenkinsci/jenkins
+$ docker start jenkinsci/jenkins
+$ docker ps
+$ docker top
+$ docker rm jenkins-master
+$ docker rmi jenkins-master
+========= splunk ========= 
+logs: 
+ * /var/chef/cache/chef-stacktrace.out @ chef-client
+ * /var/log/chef/
+ * /var/log/chef/2015_*.jetty.log @ chef-server
+ * /var/log/chef/server.log @ chef-server
+
+========= $ brew install bind ========= 
+==> Downloading https://homebrew.bintray.com/bottles/bind-9.10.2-P3.yosemite.bottle.tar.gz
+######################################################################## 100.0%
+==> Pouring bind-9.10.2-P3.yosemite.bottle.tar.gz
+==> Caveats
+To have launchd start bind at startup:
+  sudo cp -fv /usr/local/opt/bind/*.plist /Library/LaunchDaemons
+  sudo chown root /Library/LaunchDaemons/homebrew.mxcl.bind.plist
+Then to load bind now:
+  sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.bind.plist
+==> Summary
+🍺  /usr/local/Cellar/bind/9.10.2-P3: 405 files, 47M
+
+
