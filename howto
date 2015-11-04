@@ -192,6 +192,8 @@ To https://github.com/daijingwu/cIcDTutorial.git
 
 
 ========= jenkins =========
+/etc/hosts: 172.20.10.11 myjenkins.djhome
+
 http://myjenkins.djhome:8080/job/cIcDdEmo/buildTimeTrend
 
 jenkins@jenkins:~/.ssh$ ssh-keygen -t rsa -b 4096 -C "jenkins@myjenkins.djhome"
@@ -209,6 +211,9 @@ jenkins@jenkins:~/.ssh$ ls
 id_rsa  id_rsa.pub
 jenkins@jenkins:~/.ssh$ cat id_rsa.pub  => add this public key to the github @ https://github.com/settings/ssh 
 
+github:
+set up web hookup
+https://github.com/daijingwu/cIcDTutorial/settings/hooks/new?service=jenkins
 
 =========   ========= 
 =========   ========= 
