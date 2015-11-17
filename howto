@@ -250,6 +250,10 @@ daijingwu@jenkins:~$ sudo service apache2 reload
 - 
 ========= VM ========= 
 - free vm @ https://learn.chef.io/manage-a-node/ubuntu/bootstrap-your-node/ 
+
+========= pogo =========
+- https://github.com/nrh/pogo/ 
+
 ========= mysql ========= 
 $ mysql -h 127.0.0.1 -uroot -pmysqlroot
 
