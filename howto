@@ -252,7 +252,9 @@ daijingwu@jenkins:~$ sudo service apache2 reload
 - free vm @ https://learn.chef.io/manage-a-node/ubuntu/bootstrap-your-node/ 
 
 ========= pogo =========
+- Concepts @ https://github.com/ytoolshed/pogo/wiki/Concepts 
 - https://github.com/nrh/pogo/ 
+- https://github.com/ytoolshed/pogo/wiki
 
 ========= mysql ========= 
 $ mysql -h 127.0.0.1 -uroot -pmysqlroot
