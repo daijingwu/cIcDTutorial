@@ -245,10 +245,64 @@ daijingwu@jenkins:~$ sudo service apache2 reload
 => http://172.20.10.11
 
 
-=========   ========= 
-=========   ========= 
-=========   ========= 
-=========   ========= 
+========= JAVA administration ========= 
+- JDK tools @ http://docs.oracle.com/javase/7/docs/technotes/tools/
+- 
+========= VM ========= 
+- free vm @ https://learn.chef.io/manage-a-node/ubuntu/bootstrap-your-node/ 
+========= mysql ========= 
+$ mysql -h 127.0.0.1 -uroot -pmysqlroot
+
+- mysql ssl
+-- generate server certs, key/client key
+@ https://dev.mysql.com/doc/refman/5.7/en/creating-ssl-files-using-openssl.html
+-- ssl connection
+@ https://dev.mysql.com/doc/refman/5.7/en/using-ssl-connections.html
+
+- restart mysql on ubuntu
+$ sudo /etc/init.d/mysql restart
+http://stackoverflow.com/questions/30101555/how-to-restart-remote-mysql-server-running-on-ubuntu-linux
+
+
+========= ruby ========= 
+- ruby Gemfile, Gemfile.lock ...
+http://manpages.ubuntu.com/manpages/raring/man1/bundle-exec.1.html
+
+bundle exec rackup -s thin -E production -o 0.0.0.0 -p 3000  => bundle-exec - Execute a command in the context of the bundle. put  the  directory  containing  executables  (like  rails,  rspec,
+           rackup) for your bundle on $PATH
+
+https://github.com/karmi/rails-deployment-setups-sprinkle/blob/master/2-rails-stack-nginx-thin.rb
+
+https://flynn.io/docs/how-to-deploy-ruby
+
+https://devcenter.heroku.com/articles/getting-started-with-ruby-o#declare-process-types-with-procfile  <==== similar case!!!
+https://devcenter.heroku.com/articles/rack 
+http://stackoverflow.com/questions/9896216/deploy-sinatra-app-on-heroku
+https://orchestrate.io/blog/2015/02/09/simple-version-control/
+
+
+bundle exec
+
+rack: Rack provides a minimal, modular and adaptable interface for developing web applications in Ruby. @ https://rubygems.org/gems/rack
+
+gem 'dotenv': Loads environment variables from `.env`. @ https://rubygems.org/gems/dotenv
+
+gem 'thin': A thin and fast web server @ https://rubygems.org/gems/thin
+gem 'puma': Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications. Puma is intended for use in both development and production environments. In order to get the best throughput, it is highly recommended that you use a Ruby implementation with real threads like Rubinius or JRuby. @ https://rubygems.org/gems/puma
+
+gem 'sinatra': Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort. @ https://rubygems.org/gems/sinatra
+
+gem 'mysql2': A simple, fast Mysql library for Ruby, binding to libmysql @ https://rubygems.org/gems/mysql2
+
+$ sudo apt-get install ruby-dev => /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require': cannot load such file -- mkmf (LoadError)
+$ sudo apt-get install libssl-dev => puma ERROR: Failed to build gem native extension
+$ bundle install
+
+$ bundle exec rackup -s thin -E production -o 0.0.0.0 -p 3000 => start server
+$ ruby app.rb => start app.rb
+
+http://revelry.co/development/2014/10/15/15-min-karaoke-app/ => ruby app.rb gemfiles config.ru .env
+
 ========= docker ========= 
 $ docker images
 $ docker pull jenkinsci/jenkins
