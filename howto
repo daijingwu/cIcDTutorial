@@ -247,7 +247,7 @@ daijingwu@jenkins:~$ sudo service apache2 reload
 
 ========= JAVA administration ========= 
 - JDK tools @ http://docs.oracle.com/javase/7/docs/technotes/tools/
-- 
+- JDK installation @ https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get 
 ========= VM ========= 
 - free vm @ https://learn.chef.io/manage-a-node/ubuntu/bootstrap-your-node/ 
 
