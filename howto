@@ -309,6 +309,66 @@ $ ruby app.rb => start app.rb
 
 http://revelry.co/development/2014/10/15/15-min-karaoke-app/ => ruby app.rb gemfiles config.ru .env
 
+========= chef =========
+- chef server @ https://docs.chef.io/release/12-5/server_components.html 
+The Chef server acts as a hub for configuration data. The Chef server stores cookbooks, the policies that are applied to nodes, and metadata that describes each registered node that is being managed by the chef-client. 
+
+Nginx is an open-source HTTP and reverse proxy server that is used as the front-end load balancer for the Chef server. All requests to the Chef server API are routed through Nginx.
+
+chef-server-webui is a Ruby on Rails 3.0 application that hosts the web interface for the Chef server.
+The Chef management console uses the Chef server API for all communication to the Chef server.
+
+Erchef is a complete rewrite of the core API for the Chef server, which allows it to be faster and more scalable than previous versions. The API itself is still compatible with the original Ruby-based Chef server, which means that cookbooks and recipes that were authored for the Ruby-based Chef server will continue to work on the Erlang-based Chef server. The chef-client is still written in Ruby.
+
+PostgreSQL is the data storage repository for the Chef server.
+
+The Chef server itself is highly scalable. A single virtual machine running the Chef server can handle requests for many thousands of nodes. As the scale increases, it’s a straightforward process to expand into a tiered front-end, back-end architecture with horizontally scaled front-ends to relieve pressure on system bottlenecks.
+
+
+- chef mac node
+ - enable ssh on mymac, 
+ - modify /etc/hosts
+bash-3.2$ grep mymac /etc/hosts
+10:172.20.10.6  mymac
+ - bootstrap mymac & 
+bash-3.2$ knife bootstrap mymac --ssh-user xxx --ssh-password 'ooo' --sudo --use-sudo-password --node-name mymac
+
+ - verify @ https://manage.chef.io/organizations/djhome/nodes & mymac
+bash-3.2$ more /etc/chef/client.rb
+log_location     STDOUT
+chef_server_url  "https://api.opscode.com/organizations/djhome"
+validation_client_name "djhome-validator"
+node_name "mymac"
+
+- resources in recipes for mac
+ - homebrew_package @ https://docs.chef.io/release/12-5/resource_homebrew_package.html
+   => Use the homebrew_package resource to manage packages for the Mac OS X platform.
+homebrew_package 'name of package' do
+  action :install
+end
+
+ - macports_package @ https://docs.chef.io/release/12-5/resource_macports_package.html 
+   => Use the macports_package resource to manage packages for the Mac OS X platform.
+macports_package 'name of package' do
+  action :install
+end
+
+ - reboot @ https://docs.chef.io/release/12-5/resource_reboot.html
+   => Use the reboot resource to reboot a node, a necessary step with some installations on certain platforms. This resource is supported for use on the Microsoft Windows, Mac OS X, and Linux platforms
+
+Reboot a node immediately
+reboot 'now' do
+  action :nothing
+  reason 'Cannot continue Chef run without a reboot.'
+  delay_mins 2
+end
+
+execute 'foo' do
+  command '...'
+  notifies :reboot_now, 'reboot[now]', :immediately
+end
+
+
 ========= docker ========= 
 $ docker images
 $ docker pull jenkinsci/jenkins
@@ -339,5 +399,3 @@ Then to load bind now:
   sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.bind.plist
 ==> Summary
 🍺  /usr/local/Cellar/bind/9.10.2-P3: 405 files, 47M
-
-
