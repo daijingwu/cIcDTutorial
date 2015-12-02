@@ -324,6 +324,23 @@ PostgreSQL is the data storage repository for the Chef server.
 
 The Chef server itself is highly scalable. A single virtual machine running the Chef server can handle requests for many thousands of nodes. As the scale increases, it’s a straightforward process to expand into a tiered front-end, back-end architecture with horizontally scaled front-ends to relieve pressure on system bottlenecks.
 
+For instance, if there are West coast and East coast data centers, it is best to have one Chef server instance in each datacenter. Deploys to each Chef server can be synchronized upstream by CI software. The primary limiting bottleneck for Chef server installations is almost always input/output operations per second (IOPS) performance for the database filesystem.
+
+- chef linux instance
+https://learn.chef.io/manage-a-node/ubuntu/bootstrap-your-node/
+ - get hostname, ip, and modify local's /etc/hosts
+23.29.99.50  master
+ - log on master, and configure ssh without password
+ -rw-rw-r-- 1 sysadmin sysadmin 404 Dec  2 02:09 authorized_keys
+ - scp encrypted_data_bag_secret sysadmin@master:~
+ - bootstrap this node and sudo cp ~/encrypted_data_bag_secret /etc/chef
+  localhost:
+  $ cd  ~/working/github/chef-local/chef-repo; => bootstrap master, once chef-client is installed, ssh master
+
+  master:
+  $ ssh sysadmin@master
+  $ sudo cp ~/encrypted_data_bag_secret /etc/chef
+  
 
 - chef mac node
  - enable ssh on mymac, 
