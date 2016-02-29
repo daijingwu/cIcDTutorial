@@ -7,3 +7,8 @@ eval "$(boot2docker shellinit)"
 alias grep="grep -n --colo=auto"
 
 [ -f ~/.bashrc_docker ] && . ~/.bashrc_docker
+export CLICOLOR=1
+#export LSCOLORS=GxFxCxDxBxegedabagaced
+export LSCOLORS=ExFxBxDxCxegedabagacad
+#export PS1='\[[\e[0;33m\]\u\[\e[m\]@\[\e[0;32m\]\h\[\e[m\] \[\e[0;36m\]\W\[\e[m\]]# '
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
